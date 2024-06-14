@@ -1,35 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Calendar from "./Components/Calendar/Calendar"
+import Dashboard from "./Pages/Dashboard/Index"
+import Login from './Pages//SignupLogin/Login'
+import Signup from "./Pages/SignupLogin/Signup"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Home from "./Pages/Home"
+import Booking from "./Pages/Dashboard/BookVisit"
+import About from "./Pages/Dashboard/About"
+import Form from "./Components/Calendar/Form"
+import Navbar from "./Components/Navbar"
+import Styles from "./Pages/Dashboard/Styles"
+import Services from "./Pages/Dashboard/Services"
 
-function App() {
-  const [count, setCount] = useState(0)
 
+
+const App = () => {
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <BrowserRouter>
+    <Navbar/>
+      <Routes>
+      <Route path="/" Component={Home}/>
+      <Route path="/dashboard" Component={Dashboard}/>
+        <Route path="/login" Component={Login}/>
+        <Route path="/signup" Component={Signup}/>
+        <Route path="/about" Component={About} />
+        <Route path="/calendar" Component={Calendar} />
+        <Route path="/bookVisit" Component={Booking} />
+        <Route path="/styles" Component={Styles}/>
+        <Route path="/services" Component={Services} />
+        <Route path="/form" Component={Form}/>
+    
+
+      </Routes>
+    </BrowserRouter>
     </>
   )
 }
 
 export default App
+

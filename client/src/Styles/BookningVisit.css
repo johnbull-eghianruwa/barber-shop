@@ -1,0 +1,74 @@
+.visit{
+    margin: auto;
+    padding: 0;
+}
+.visit{
+    display: block;
+    justify-content: center;
+    text-align: center;
+   
+}
+.visit .row h3 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    line-height: 4;
+}
+.visit .row  .image{
+    mask-image: -moz-repeating-linear-gradient(1);
+}
+.main-section{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+}
+.main-section .main-styles{
+    display: block;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.main-section .main-styles .h-heading .styles-iprice{
+    font-size: 2.rem;
+    line-height: 2;
+}
+.main-section .main-styles .h-heading h3{
+    font-size: 1.5rem;
+    line-height: 2;
+}
+.main-section .main-styles .h-heading span{
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    line-height: 2;
+}
+.main-section .main-styles .h-heading p{
+    padding: 2rem;
+    font-size: 1.5rem;
+    line-height: 2;
+}
+.h-heading h1 {
+    font-size: 2rem;
+    line-height: 3;
+}
+ .h-heading .styles-price{
+    font-size: 1.5rem;
+    line-height: 3;
+}
+.h-heading span{
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+.h-heading p{
+    font-size: 1.5rem;
+    line-height: 2;
+}
+
+.main-section .btn-book{
+    font-size: 1.5rem;
+    line-height: 3;
+    width: 300px;
+}
+.main-section .btn-book:hover{
+    background-color:#000;
+    color: #fff;
+}

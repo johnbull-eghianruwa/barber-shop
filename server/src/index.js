@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require ('express');
 const cors = require ('cors');
 const bcrypt = require ("bcrypt");
@@ -32,19 +33,17 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
 });
-
-// Signup endpoint
-app.post('/api/signup', async (req, res) => {
-  const { name, email, password, role } = req.body;
+app.post('/api/v2/signup', async (req, res) => {
+  const { name, email, password } = req.body;
 
   try {
     // Hash the password using bcrypt
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create the new user with the hashed password and role
-    const newUser = await IsaacDBModel.create({ name, email, password: hashedPassword, role });
+    // Create the new user with the hashed password
+    const newUser = await IsaacDBModel.create({ name, email, password: hashedPassword });
 
-    res.status(201).json(newUser);
+    res.status(201).json({ message: 'User successfully added to the database', user: newUser });
   } catch (error) {
     console.error(error.message);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -68,7 +67,7 @@ app.get('/api/users', async (req, res) => {
     }
 
     // Fetch all users
-    const users = await IsaacDBModel.find({}, { name: 1, email: 1, role: 1 });
+    const users = await IsaacDBModel.find({}, { name: 1, email: 1 });
 
     res.status(200).json(users);
   } catch (error) {
@@ -110,49 +109,6 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-// Existing secured endpoint for getting users
-app.get('/users', async (req, res) => {
-  const token = req.headers.authorization;
-
-  if (!token) {
-    return res.status(401).json({ error: 'No token provided' });
-  }
-
-  try {
-    const decoded = await jwt.verify(token, 'secret');
-
-    // Check if the user is an admin
-    if (decoded.role !== 'admin') {
-      return res.status(403).json({ error: 'Forbidden' });
-    }
-
-    // Fetch all users
-    const users = await IsaacDBModel.find({}, { name: 1, email: 1, role: 1 });
-
-    res.status(200).json(users);
-  } catch (error) {
-    console.error(error.message);
-    res.status(401).json({ error: 'Invalid token' });
-  }
-});
-
-// Book an appointment
-app.post('/bookForm', async (req, res) => {
-  const { customerName, email, date, time } = req.body;
-  const appointment = new Appointment({
-    customerName,
-    email,
-    date,
-    time,
-  });
-
-  try {
-    const newAppointment = await appointment.save();
-    res.status(201).json(newAppointment);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
-});
 
 // Cancel an appointment
 app.delete('/bookForm/:id', async (req, res) => {

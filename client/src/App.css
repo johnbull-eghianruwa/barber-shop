@@ -1,42 +1,93 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root{
+  --main-color:#d7c7ae;
+  --primary-color:#8a6d46;
+  --hover: #5a4d3e;
+  --black:#2a201c;
+  --white:var(--black)#fff;
+  --light-gb:#f3efec;
+  --dark-bg:rgba(0,0,0,.7);
+  --border:.1rem solid #aaa;
+  --border-shadow:0.5rem rgba(0,0,0,.1);
+  --inputColor: hsl(154, 14%, 90%);
+  --inputColor:hsl(330, 12%, 97%);
+  --hoverColor:hls(93,55%, 56%);
+
+  --biggesFontSize: 2.5rem;
+  --h1FontSize: 1.5rem;
+  --h2FontSize: 1.25rem;
+  --h3FontSize: 1rem;
+  --normalFontSize: .813rem;
+  --smallesFontSize: .75rem;
+
+
+}
+*{
+  font-family: 'playfair Display', sans-serif;
+  margin: 0; 
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  transition: all .2s linear;
+}
+
+html{
+  font-size: 62.5%;
+  overflow: hidden;
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+html::-webkit-scrollbar-track{
+  background-color: var(--white);
+}
+html::-webkit-scrollbar-thumb{
+  background-color: var(--primary-color);
+}
+.flex{
+  display: flex;
+  align-items: center;
+}
+.grid{
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+}
+a{
+  text-decoration: none;
+}
+li{
+  list-style: none;
+}
+.icon{
+  font-size: var(--h2FontSize);
+  cursor: pointer;
+}
+img, video{
+  height: auto;
+  width: 100%;
+}
+
+.showMessage{
+  display: block;
+  color: var(--whiteColor);
+  background-color: rgb(255, 0,0);
+  border-radius: 3px;
   text-align: center;
 }
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.btn{
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: .8rem;
+  color: var(--greyText);
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.btn .icon{
+  margin-left: .5rem;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.btn:hover{
+ color: var(--light);
+ background-color: var(--primary-color);
 }

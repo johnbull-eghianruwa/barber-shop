@@ -1,0 +1,256 @@
+/*.about{
+    background: url(../assets/AboutUsImage.jpeg);
+    background-repeat: no-repeat;
+    background-position: left bottom;
+}
+*/
+.about .row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.about .row .image{
+    flex: 1 1 39rem;
+}
+.about .row .image img{
+    width: 100%;
+   
+}
+.about .row .content{
+    flex:  1 1 51rem;
+    padding: 5rem;
+}
+.content .title{
+    display: block;
+    justify-content: center;
+}
+
+.about .row .content .title{
+    font-size: 3rem;
+    color: var(--primary-color);
+}
+.about .row .content p{
+    /*display: flex;*/
+    /*justify-content: center;*/
+    font-size: 1.6rem;
+    color: #444;
+    padding: 1rem 0;
+    line-height: 1.8;
+}
+.about .row .content .icons-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+.about .row .content .icons-container .icons{
+    flex: 1 1 16rem;
+    text-align: center;
+    background: var(--light-bg);
+    padding:  3rem 2rem;
+}
+.about .row .content .icons-container .icons img{
+    height: 5rem;
+}
+.about .row .content .icons-container .icons h3{
+    padding-top: 1rem;
+    font-size: 1.6rem;
+    color: #444;
+    font-weight: normal;
+    text-transform: capitalize;
+}
+.content .title{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 3rem;
+    color: var(--primary-color);
+    text-transform: capitalize;
+}
+.content p{
+    display: block;
+    justify-content: center;
+    text-align: center;
+    padding: 4px 6px;
+    font-size: 2rem;
+}
+.icons-container{
+    display: flex;
+    justify-content: center;
+    margin: 10rem;
+    gap: 20px;
+}
+.icons-container .icons{
+    width: 200px;
+    border: 1px solid none;
+    background: var(--light-bg);
+}
+.icons-container .icons img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 150px;
+    margin-top: 1rem;
+    padding: 10px 13px;
+}
+.icons-container .icons img,h3:hover{
+    cursor: pointer;
+    transform: scale(1.2);
+    transition: 0.4s;
+}
+.icons-container .icons h3{
+    display: flex;
+    justify-content: center;
+    font-size: 1.9rem;
+    color: var(--primary-color);
+    text-transform: capitalize;
+    padding-bottom: 10px;
+    
+}
+.image-container{
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+    padding: 1rem;
+}
+.image-container .details-pic{
+    display: block;
+    text-align: center;
+}
+.image-container .details-pic h2{
+    margin: 1.5rem;
+    font-size: 3rem;
+    color: var(--primary-color);
+    text-transform: capitalize;
+}
+.image-container .details-pic .card{
+    display: flex;
+   
+    width: 800px;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+    transition-property: var(--primary-color);
+    padding: 2.5rem;
+}
+.image-container .details-pic img:hover{
+    cursor: pointer;
+    position: relative;
+    animation: myfirst 5s linear 2s infinite alternate;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    transform: scale(1.2);
+    transition: 0.4s;
+}
+
+.image-container .details-pic .card p{ 
+    margin-top: 1.5rem;
+    padding: 2.5rem;
+    font-size: 1.5rem;
+}
+.input{
+    display: block;
+    flex-direction: column;
+    justify-content: center;
+    margin: 1.5rem;
+}
+.input .input-item{
+    display: block;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.5rem;
+    padding-right: 10px 13px;
+}
+.input .input-item .salutation, option:hover{
+   width: 150px;
+
+   height: 40px;
+   cursor: pointer;
+   width: 450px;
+   background-color: var(--light-bg);
+   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+   transform: scale(1.1);
+   transition: 0.4s;
+}
+.input .input-item label{
+    display: block;
+    margin-top: 15px;
+    text-transform: capitalize;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+.input .input-item input{
+    width: 450px;
+    height: 40px;
+    background-color: var(--light-bg);
+    text-align: center;
+    transform: scale(1.1);
+    transition: 0.4s;
+}
+.input .input-item input:hover{
+    cursor: pointer;
+    background-color: bisque;
+    font-weight: 600;
+}
+.input .input-item textarea{
+    width: 500px;
+    height: 100px;
+    background-color: var(--light-bg);
+}
+.input .input-item textarea:hover{
+    cursor: pointer;
+    background-color: bisque;
+    font-weight: 600;
+}
+.input .btn{
+    text-align: center;
+    margin-top: 10px;
+}
+.input .btn button{
+    width: 500px;
+    height: 40px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    background-color: var(--main-color);
+    
+}
+.input .btn button:hover{
+    cursor: pointer;
+    background-color: bisque;
+    font-weight: 600;
+    transform: scale(1.1);
+    transition: 0.4s;
+}
+.slide {
+    display: flex;
+    justify-content: center;
+}
+.slide .slide-image {
+    width: 850px;
+    height:850px;
+}
+.slide-prev {
+    font-size: 2rem;
+    font-weight: 700;
+    background-color: var(--light-bg);
+    color: #000;
+}
+.slide-prev:hover{
+    cursor: pointer;
+    background-color: var(--main-color);
+    color: #fff;
+}
+.slide-next{
+    font-size: 2rem;
+    font-weight: 700;
+    background-color: var(--light-bg);
+    color: #000;
+    width: 80px;
+}
+.slide-next:hover{
+    cursor: pointer;
+    background-color: var(--main-color);
+    color: #fff;
+}
+

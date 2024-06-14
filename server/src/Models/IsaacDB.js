@@ -1,4 +1,3 @@
-// Models/IsaacDB.js
 const mongoose = require('mongoose');
 
 const IsaacSchema = new mongoose.Schema({
@@ -12,15 +11,16 @@ const IsaacDBModel = mongoose.model('Isaac', IsaacSchema);
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI, {
+    await mongoose.connect('mongodb://localhost:27017/isaacDB', {
       useNewUrlParser: true,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
+      serverSelectionTimeoutMS: 30000, // Increased timeout
+      socketTimeoutMS: 45000, // Increased timeout
     });
 
     console.log('MongoDB connected...');
-
   } catch (err) {
-    console.error(err.message);
+    console.error('Error connecting to MongoDB:', err.message);
     process.exit(1);
   }
 };
