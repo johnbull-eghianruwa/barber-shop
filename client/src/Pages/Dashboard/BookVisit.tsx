@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BookImage from '../../assets/BookImage.jpeg';
+import { FaEuroSign } from "react-icons/fa";
 import '../../Styles/BookningVisit.css';
 
 interface Appointment {
@@ -43,7 +44,7 @@ const BookVisit: React.FC = () => {
           <div className="h-heading">
             <h1>HAIR</h1>
             <h3 className="styles-iprice">
-              HAIRCUT ..................<i className="fa-solid fa-euro-sign">45</i>
+            <FaEuroSign />HAIRCUT ..................45
             </h3>
             <p>
               <span>Duration: 45 minutes</span> - relaxing hair wash, neck and<br /> shoulder massage with hot compress, haircut using <br />various cutting techniques, styling with modern and<br /> traditional styling products, contour wet shave and <br />final treatment
@@ -54,7 +55,7 @@ const BookVisit: React.FC = () => {
         <div className="h-heading">
           <h1>BEARD & SHAVE</h1>
           <h3 className="styles-price">
-            BEARD TRIM WITH CONTOUR SHAVING ..................<i className="fa-solid fa-euro-sign">35</i>
+            BEARD TRIM WITH CONTOUR SHAVING ..................<FaEuroSign />35
           </h3>
           <p>
             <span>Duration: 30 minutes -</span> clean your beard, shape your beard with scissors and<br /> clippers, facial massage and hot compress, perfect your beard contours <br />with wet shaving, followed by beard care with balm and oil
@@ -64,7 +65,7 @@ const BookVisit: React.FC = () => {
         <div className="h-heading">
           <h1>PACKAGES & CARE</h1>
           <h3 className="styles-price">
-            CAREFREE PACKAGE ..................<i className="fa-solid fa-euro-sign">55</i>
+          <FaEuroSign />CAREFREE PACKAGE ..................55
           </h3>
           <p>
             <span>Duration: 75 minutes -</span> haircut + <br />beard trim with contour shaving

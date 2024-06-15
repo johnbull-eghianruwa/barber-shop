@@ -79,7 +79,12 @@ app.post('/api/v2/signup', async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create the new user with the hashed password
-    const newUser = await IsaacDBModel.create({ name, email, password: hashedPassword });
+    const newUser = await IsaacDBModel.create(
+      { 
+        name: name, 
+        email: email, 
+        password: hashedPassword
+      });
 
     res.status(201).json({ message: 'User successfully added to the database', user: newUser });
   } catch (error) {

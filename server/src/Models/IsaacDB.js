@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const mongoose = require('mongoose');
 
 const IsaacSchema = new mongoose.Schema({
@@ -7,28 +9,14 @@ const IsaacSchema = new mongoose.Schema({
   role: String
 });
 
-const IsaacDBModel = mongoose.model('Isaac', IsaacSchema);
+const IsaacDBModel = mongoose.model('isaacs', IsaacSchema);
 
-const connectDB = async () => {
-  try {
-    await mongoose.connect('mongodb://localhost:27017/isaacDB', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      serverSelectionTimeoutMS: 30000, // Increased timeout
-      socketTimeoutMS: 45000, // Increased timeout
-    });
-
-    console.log('MongoDB connected...');
-  } catch (err) {
-    console.error('Error connecting to MongoDB:', err.message);
-    process.exit(1);
-  }
-};
+const connectDB = mongoose.connect(process.env.DATABASE_URL);
 
 module.exports = {
   connectDB,
   IsaacDBModel,
-  Appointment: mongoose.model('Appointment', new mongoose.Schema({
+  Appointment: mongoose.model('appointments', new mongoose.Schema({
     customerName: String,
     email: String,
     date: String,
