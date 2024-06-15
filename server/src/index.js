@@ -33,6 +33,44 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
 });
+app.get("/", (req, res, next) => {
+  const token = req.get("Authorization");
+  if (!token) {
+    res.status(401);
+    return;
+  }
+
+  try {
+    verify(token.split(" ")[1], "secret");
+  } catch (e) {
+    res.status(403);
+    res.send("Invalid token");
+    return;
+  }
+
+  res.status(200);
+  res.setHeader("Content-Type", "text/plain");
+  res.send("Hello World!");
+});
+app.post("/api/signup", async (req, res) => {
+  const name = req.body.name;
+  const email = req.body.email;
+  const password = req.body.password;
+
+  const salt = await bcrypt.genSalt(12);
+  const hash = await bcrypt.hash(password, salt);
+
+  users.push({
+    name,
+    email,
+    password: hash,
+    role: "user",
+  });
+
+  res.status(201);
+  res.send("Created user");
+});
+
 app.post('/api/v2/signup', async (req, res) => {
   const { name, email, password } = req.body;
 

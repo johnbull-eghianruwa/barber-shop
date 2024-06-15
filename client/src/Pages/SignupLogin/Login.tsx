@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom'
-import video from '../../assets/Video1/video.mp4'
+import { Link, useNavigate } from 'react-router-dom'
+import { useState } from 'react';
+//import video from '../../assets/Video1/video.mp4'
 import { MdAttachEmail } from "react-icons/md";
 import { BsFillShieldLockFill } from "react-icons/bs";
 import { AiOutlineSwapRight } from "react-icons/ai";
@@ -8,7 +9,35 @@ import { AiOutlineSwapRight } from "react-icons/ai";
 import '../../Styles/SignupLogin/Login.css'
 
 const Login = () => {
+  const [email, setEmail] =useState('')
+  const [password, setPassword] =useState('')
+
+  const navigate = useNavigate();
+
   
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    try {
+      const response = await fetch('http://localhost:3001/api/v2/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      if (response.ok) {
+        postMessage('User has been created');
+        setEmail('');
+        setPassword('');
+        navigate('/login'); // Navigate to login on successful signup
+      } else {
+        postMessage('Failed to create user');
+      }
+    } catch (error) {
+      postMessage(`Error: ${error.message}`);
+      console.error('Error:', error);
+    }
+  }; 
   return (
     <div className='loginPage flex'>
       <div className='container flex'>
@@ -30,12 +59,15 @@ const Login = () => {
         <div className="formDiv flex">
           <h3>Let us know you!</h3>
 
-          <form action=""className='form grid'>
+          <form onSubmit={handleSubmit} className='form grid'>
             <div className="inputDiv">
               <label htmlFor="email">Email</label>
               <div className="input flex">
               <MdAttachEmail className='icon' />
-              <input type='email' id='email' name='email' placeholder='Enter email here' required />
+              <input type='email' id='email' name='email' placeholder='Enter email here'
+               onChange={(event) =>{
+                setEmail(event.target.value)
+              }}  required />
 
               </div>
             </div>
@@ -43,7 +75,10 @@ const Login = () => {
               <label htmlFor="password">Password</label>
               <div className="input flex">
               <BsFillShieldLockFill className="icon" />
-              <input type='password' id='password' name='password' placeholder='Enter password here' required />
+              <input type='password' id='password' name='password' placeholder='Enter password here'
+               onChange={(event) =>{
+                setPassword(event.target.value)
+              }}  required />
               </div>
             </div>
 
@@ -62,4 +97,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Login;
