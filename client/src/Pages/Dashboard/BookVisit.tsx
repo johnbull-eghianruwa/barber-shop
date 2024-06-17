@@ -1,89 +1,87 @@
-import React, { useState } from 'react';
+import React from 'react';
+import About from '../../assets/AboutUsImage.jpeg';
+import { FaFacebook, FaWhatsapp, FaInstagramSquare, FaRegCopyright } from 'react-icons/fa';
+import { BiSolidContact } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
-import BookImage from '../../assets/BookImage.jpeg';
-import { FaEuroSign } from "react-icons/fa";
-import '../../Styles/BookningVisit.css';
 
-interface Appointment {
-  id: number;
-  service: string;
-  date: string;
-  time: string;
-}
+import '../../Styles/BookningVisit.css'
 
-const BookVisit: React.FC = () => {
-  const [appointments, setAppointments] = useState<Appointment[]>([]);
+const BookVisit = () => {
   const navigate = useNavigate();
 
-  const bookAppointment = (serviceType: string) => {
-    const newAppointment: Appointment = {
-      id: Date.now(),
-      service: serviceType,
-      date: new Date().toLocaleDateString(),
-      time: new Date().toLocaleTimeString(),
-    };
-    setAppointments([...appointments, newAppointment]);
-    alert('Appointment booked successfully!');
-    setTimeout(() => {
-      navigate('/calendar');
-    }, 500); // Add a slight delay to allow users to read the alert
+  // Function to handle navigation to /working
+  const handleNavigateToWorking = () => {
+    navigate('/login');
   };
 
   return (
-    <>
-      <section className="visit" id="visit">
-        <div className="row">
-          <h3>PRICES & DATES</h3>
-          <div className="image">
-            <img src={BookImage} alt="Book Appointment" />
+    <div className="book">
+      <div className="image-page">
+        <img src={About} alt="background image" />
+        <h2>ISAAC</h2>
+        <h3>BARBERSHOP</h3>
+        <h2>CUTS, SHAVES AND ROCK'N'ROLL</h2>
+      </div>
+      <div className="menu-list">
+        <a href="#" className="item">
+          <FaFacebook className="icon" />
+          Facebook
+        </a>
+        <a href="#" className="item">
+          <FaWhatsapp className="icon" />
+          Whatsapp
+        </a>
+        <a href="#" className="item">
+          <FaInstagramSquare className="icon" />
+          Instagram
+        </a>
+        <a href="#" className="item">
+          <BiSolidContact className="icon" />
+          Contact
+        </a>
+      </div>
+      <div className="openin-time">
+        <hr />
+        <h1 className="opening-hours">Opening hours</h1>
+      </div>
+      <div className="opening">
+        <span className="opening-item">Monday-Friday: 9:30 a.m - 7p.m.</span>
+      </div>
+      <div className="opening">
+        <span className="opening-item">Saturday: 10 a.m - 7p.m.</span>
+      </div>
+      <div className="opening">
+        <span className="time">Sunday Closed</span>
+      </div>
+      <div className="book-app">
+        <hr />
+        {/* Updated link to navigate to /working */}
+        <a href="#" onClick={handleNavigateToWorking}>
+          Book An Appointment
+        </a>
+      </div>
+      <div className="hint">
+        <hr />
+        <div className="hint-info">
+          <div className="hint-header">
+            <h2>Please arrive 5 minutes before appointment!</h2>
+          </div>
+          <div className="hint-details">
+            <p>Booked appointments are binding.</p>
+            <p>Cancellation is only possible up to 24 hours in advance ONLY via cancellation link or by phone respectively.</p>
+            <p>We reserve the right to charge you for appointments that are not cancelled in time!</p>
+            <p>Thanks</p>
           </div>
         </div>
-      </section>
-      <section className="main-section">
-        <div className="main-styles">
-          <div className="h-heading">
-            <h1>HAIR</h1>
-            <h3 className="styles-iprice">
-            <FaEuroSign />HAIRCUT ..................45
-            </h3>
-            <p>
-              <span>Duration: 45 minutes</span> - relaxing hair wash, neck and<br /> shoulder massage with hot compress, haircut using <br />various cutting techniques, styling with modern and<br /> traditional styling products, contour wet shave and <br />final treatment
-            </p>
-            <button className="btn-book" onClick={() => bookAppointment('Haircut')}>BOOK AN APPOINTMENT ONLINE</button>
-          </div>
-        </div>
-        <div className="h-heading">
-          <h1>BEARD & SHAVE</h1>
-          <h3 className="styles-price">
-            BEARD TRIM WITH CONTOUR SHAVING ..................<FaEuroSign />35
-          </h3>
+      </div>
+      <div className="footer">
+        <footer>
           <p>
-            <span>Duration: 30 minutes -</span> clean your beard, shape your beard with scissors and<br /> clippers, facial massage and hot compress, perfect your beard contours <br />with wet shaving, followed by beard care with balm and oil
+            COPYRIGHT<FaRegCopyright /> ISAAC 2024
           </p>
-          <button className="btn-book" onClick={() => bookAppointment('Beard Trim with Contour Shaving')}>BOOK AN APPOINTMENT ONLINE</button>
-        </div>
-        <div className="h-heading">
-          <h1>PACKAGES & CARE</h1>
-          <h3 className="styles-price">
-          <FaEuroSign />CAREFREE PACKAGE ..................55
-          </h3>
-          <p>
-            <span>Duration: 75 minutes -</span> haircut + <br />beard trim with contour shaving
-          </p>
-          <button className="btn-book" onClick={() => bookAppointment('Carefree Package')}>BOOK AN APPOINTMENT ONLINE</button>
-        </div>
-      </section>
-      <section className="appointment-list">
-        <h3>Booked Appointments</h3>
-        <ul>
-          {appointments.map(appointment => (
-            <li key={appointment.id}>
-              {appointment.service} - {appointment.date} - {appointment.time}
-            </li>
-          ))}
-        </ul>
-      </section>
-    </>
+        </footer>
+      </div>
+    </div>
   );
 };
 

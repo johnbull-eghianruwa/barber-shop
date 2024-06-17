@@ -22,10 +22,6 @@ app.use(express.json());
 
 connectDB
 
-const STORE_OPENING_TIME = 9; // Store opens at 9 AM
-const STORE_CLOSING_TIME = 17; // Store closes at 5 PM
-const INTERVAL = 30; // Interval in minutes
-
 // CORS middleware to allow cross-origin requests
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -69,10 +65,12 @@ app.post("/api/signup", async (req, res) => {
 
   res.status(201);
   res.send("Created user");
-});
+}); 
 
 app.post('/api/v2/signup', async (req, res) => {
-  const { name, email, password } = req.body;
+  const name = req.body.name;
+  const  email = req.body.email; 
+   const password  = req.body;
 
   try {
     // Hash the password using bcrypt
@@ -152,121 +150,36 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
+app.post('/appointmentDetails',async (req, res) =>{
+  const date = req.body.date;
+  const time = req.body.time;
+  const totalTtems = req.body.totalTtems;
+  const durationTime = req.body.durationTime;
+  const gender = req.body.gender;
+  const name = req.body.name;
+  const email = req.body.email;
+  const phoneNumber = req.body.phoneNumber;
+  const message = req.body.message;
 
-// Cancel an appointment
-app.delete('/bookForm/:id', async (req, res) => {
   try {
-    const appointment = await Appointment.findById(req.params.id);
-    if (!appointment) {
-      return res.status(404).json({ message: 'Appointment not found' });
-    }
-    await appointment.remove();
-    res.json({ message: 'Appointment canceled successfully!' });
+    const newAppointment = await Appointment.create({
+      date,
+      time,
+      totalTtems,
+      durationTime,
+      gender,
+      name,
+      email,
+      phoneNumber,
+      message
+    });
+
+    res.status(201).json({ message: 'Appointment created successfully', appointment: newAppointment });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    console.error('Error creating appointment:', err);
+    res.status(500).json({ error: 'Failed to create appointment' });
   }
 });
-
-// BookingDate routes
-app.post(
-  '/api/bookingDates',
-  [
-    body('justDate').isDate().withMessage('justDate must be a valid date'),
-    body('dateTime')
-      .isDate()
-      .withMessage('dateTime must be a valid date')
-      .custom((value, { req }) => {
-        if (value < req.body.justDate) {
-          throw new Error('dateTime must be on or after justDate');
-        }
-        return true;
-      }),
-  ],
-  async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-
-    try {
-      const { justDate, dateTime } = req.body;
-      const bookingDate = new BookingDate({ justDate, dateTime });
-      await bookingDate.save();
-      res.status(201).json(bookingDate);
-    } catch (err) {
-      res.status(400).json({ message: err.message });
-    }
-  }
-);
-
-app.get('/api/bookingDates', async (req, res) => {
-  try {
-    const bookingDates = await BookingDate.find();
-    res.json(bookingDates);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
-
-app.get('/api/bookingDates/:id', getBookingDate, (req, res) => {
-  res.json(res.bookingDate);
-});
-
-app.put(
-  '/api/bookingDates/:id',
-  getBookingDate,
-  [
-    body('justDate').isDate().withMessage('justDate must be a valid date'),
-    body('dateTime')
-      .isDate()
-      .withMessage('dateTime must be a valid date')
-      .custom((value, { req }) => {
-        if (value < req.body.justDate) {
-          throw new Error('dateTime must be on or after justDate');
-        }
-        return true;
-      }),
-  ],
-  async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-
-    const { justDate, dateTime } = req.body;
-    res.bookingDate.justDate = justDate;
-    res.bookingDate.dateTime = dateTime;
-    try {
-      const updatedBookingDate = await res.bookingDate.save();
-      res.json(updatedBookingDate);
-    } catch (err) {
-      res.status(400).json({ message: err.message });
-    }
-  }
-);
-
-app.delete('/api/bookingDates/:id', getBookingDate, async (req, res) => {
-  try {
-    await res.bookingDate.remove();
-    res.json({ message: 'BookingDate deleted' });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
-
-async function getBookingDate(req, res, next) {
-  let bookingDate;
-  try {
-    bookingDate = await BookingDate.findById(req.params.id);
-    if (bookingDate == null) {
-      return res.status(404).json({ message: 'Cannot find bookingDate' });
-    }
-  } catch (err) {
-    return res.status(500).json({ message: err.message });
-  }
-  res.bookingDate = bookingDate;
-  next();
-}
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

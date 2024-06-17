@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+*.client
+*.src
+*.pages
+*.dashboard
+
+*.example

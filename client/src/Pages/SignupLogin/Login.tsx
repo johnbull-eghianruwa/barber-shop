@@ -29,7 +29,7 @@ const Login = () => {
         postMessage('User has been created');
         setEmail('');
         setPassword('');
-        navigate('/login'); // Navigate to login on successful signup
+        navigate('/working'); // Navigate to login on successful signup
       } else {
         postMessage('Failed to create user');
       }

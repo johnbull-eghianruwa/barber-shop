@@ -17,10 +17,17 @@ module.exports = {
   connectDB,
   IsaacDBModel,
   Appointment: mongoose.model('appointments', new mongoose.Schema({
-    customerName: String,
-    email: String,
     date: String,
-    time: String
+    time: String,
+    totalTtems: String,
+    durationTime: String,
+    gender: String,
+    name: String,
+    email: String,
+    phoneNumber: Number,
+    message: String
+  
+
   })),
   BookingDate: mongoose.model('BookingDate', new mongoose.Schema({
     justDate: Date,
