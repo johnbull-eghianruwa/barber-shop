@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const saltRounds = 10;
 const { body, validationResult } = require('express-validator');
-const { connectDB, IsaacDBModel, Appointment, BookingDate } = require('./Models/IsaacDB');
+const { connectDB, IsaacDBModel, Appointment } = require('./Models/IsaacDB');
 
 // Load environment variables from .env file
 dotenv.config();
@@ -48,41 +48,45 @@ app.get("/", (req, res, next) => {
   res.setHeader("Content-Type", "text/plain");
   res.send("Hello World!");
 });
+
 app.post("/api/signup", async (req, res) => {
-  const name = req.body.name;
-  const email = req.body.email;
-  const password = req.body.password;
-
-  const salt = await bcrypt.genSalt(12);
-  const hash = await bcrypt.hash(password, salt);
-
-  users.push({
-    name,
-    email,
-    password: hash,
-    role: "user",
-  });
-
-  res.status(201);
-  res.send("Created user");
-}); 
-
-app.post('/api/v2/signup', async (req, res) => {
-  const name = req.body.name;
-  const  email = req.body.email; 
-   const password  = req.body;
+  const { name, email, password } = req.body;
 
   try {
+    const salt = await bcrypt.genSalt(12);
+    const hash = await bcrypt.hash(password, salt);
+
+    users.push({
+      name,
+      email,
+      password: hash,
+      role: "user",
+    });
+
+    res.status(201).send("Created user");
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+app.post('/api/v2/signup', async (req, res) => {
+  const { name, email, password } = req.body;  // Correctly access the password
+
+  try {
+    if (typeof password !== 'string') {
+      throw new Error('Password must be string');
+    }
+
     // Hash the password using bcrypt
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create the new user with the hashed password
-    const newUser = await IsaacDBModel.create(
-      { 
-        name: name, 
-        email: email, 
-        password: hashedPassword
-      });
+    const newUser = await IsaacDBModel.create({
+      name: name,
+      email: email,
+      password: hashedPassword
+    });
 
     res.status(201).json({ message: 'User successfully added to the database', user: newUser });
   } catch (error) {
@@ -150,6 +154,7 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
+
 app.post('/appointmentDetails',async (req, res) =>{
   const date = req.body.date;
   const time = req.body.time;
@@ -163,15 +168,15 @@ app.post('/appointmentDetails',async (req, res) =>{
 
   try {
     const newAppointment = await Appointment.create({
-      date,
-      time,
-      totalTtems,
-      durationTime,
-      gender,
-      name,
-      email,
-      phoneNumber,
-      message
+      date: date,
+      time: time,
+      totalTtems: totalTtems,
+      durationTime: durationTime,
+      gender: gender,
+      name: name,
+      email: email,
+      phoneNumber: phoneNumber,
+      message: message
     });
 
     res.status(201).json({ message: 'Appointment created successfully', appointment: newAppointment });

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaEuroSign } from "react-icons/fa";
 import About from '../../assets/AboutUsImage.jpeg'
-i//mport { GrStatusGood } from "react-icons/gr";
+//mport { GrStatusGood } from "react-icons/gr";
 import { useNavigate } from 'react-router-dom';
 import Product from './Product'; // Adjust the import path as needed
 
