@@ -17,6 +17,7 @@ module.exports = {
   connectDB,
   IsaacDBModel,
   Appointment: mongoose.model('appointments', new mongoose.Schema({
+    basket: [],
     date: String,
     time: String,
     totalTtems: String,

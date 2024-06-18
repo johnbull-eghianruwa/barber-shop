@@ -4,6 +4,11 @@
     background-position: left bottom;
 }
 */
+.main {
+    width: 100vw;
+    max-height: calc(100vh - 60px);
+    overflow-y: scroll;
+}
 .about .row{
     display: flex;
     justify-content: center;

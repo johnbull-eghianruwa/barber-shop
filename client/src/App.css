@@ -20,20 +20,19 @@
   --h3FontSize: 1rem;
   --normalFontSize: .813rem;
   --smallesFontSize: .75rem;
-
-
 }
-*{
+* {
   font-family: 'playfair Display', sans-serif;
   margin: 0; 
   padding: 0;
   box-sizing: border-box;
   outline: none;
   border: none;
-  transition: all .2s linear;
+  /* transition: all .2s linear; */
 }
 
-html{
+
+html {
   font-size: 62.5%;
   overflow: hidden;
   scroll-behavior: smooth;
@@ -45,7 +44,7 @@ html::-webkit-scrollbar-track{
 html::-webkit-scrollbar-thumb{
   background-color: var(--primary-color);
 }
-.flex{
+.flex {
   display: flex;
   align-items: center;
 }

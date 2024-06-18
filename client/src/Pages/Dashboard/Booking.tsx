@@ -5,6 +5,8 @@ import About from '../../assets/AboutUsImage.jpeg'
 import { useNavigate } from 'react-router-dom';
 import Product from './Product'; // Adjust the import path as needed
 
+import '../../Styles/Dashboard/Booking.css';
+
 const Working: React.FC = () => {
   const [basket, setBasket] = useState<any[]>([]);
   const navigate = useNavigate();
@@ -41,48 +43,51 @@ const Working: React.FC = () => {
   };
 
   return (
-    <div className="mainPage">
+    <main className="main">
       <span>Fulbutellstr, 39 40000 Haburg</span>
       <span>Phone number</span>
       <div className="image-page">
         <img
           src={About} alt="Inside store image"
         />
-        <p>Agreed appointments are binding for the customer. Appointments must therefore be cancelled at least 24 hours in advance. Otherwise, we reserve the right to
-             invoice the loss for earning in accordance with §642 (1) BGB. By booking an appointment, you agree to this regulation.</p>
+        <p>Agreed appointments are binding for the customer. Appointments must therefore be cancelled at least 24 hours in advance.<br/> Otherwise, we reserve the right to
+             invoice the loss for earning in accordance with §642 (1) BGB. By booking an appointment,<br/>
+              you agree to this regulation.</p>
       </div>
-      <div className="main-content">
-        <div className="hair-types">
-          <h1>HAIR</h1>
-          {products.map(product => (
-            <React.Fragment key={product.id}>
-              <Product 
-                id={product.id}
-                title={product.title} 
-                description={product.description} 
-                price={product.price} 
-                duration={product.duration}
-                onAdd={addProductToBasket} 
-                onRemove={removeProductFromBasket}
-              />
-              <hr />
-            </React.Fragment>
-          ))}
-        </div>
-      </div>
-      <div className="basket">
-        <h2>Shopping Basket</h2>
-        {basket.map(item => (
-          <div key={item.id}>
-            <p>{item.title} <FaEuroSign />{item.price}</p>
-            <button onClick={() => removeProductFromBasket(item.id)}>Remove</button>
+      <section className='booking-content'>
+        <div className="main-content">
+          <div className="hair-types">
+            <h1>HAIR</h1>
+            {products.map(product => (
+              <React.Fragment key={product.id}>
+                <Product 
+                  id={product.id}
+                  title={product.title} 
+                  description={product.description} 
+                  price={product.price} 
+                  duration={product.duration}
+                  onAdd={addProductToBasket} 
+                  onRemove={removeProductFromBasket}
+                />
+                <hr />
+              </React.Fragment>
+            ))}
           </div>
-        ))}
-        <p>Total duration: {totalDuration} minutes</p>
-        <p>Total items: {basket.length}</p>
-        <button onClick={handleBookAppointment} className="btn btn-primary">Book an Appointment</button>
-      </div>
-    </div>
+        </div>
+        <div className="basket">
+          <h2>Shopping Basket</h2>
+          {basket.map(item => (
+            <div key={item.id}>
+              <p>{item.title} <FaEuroSign />{item.price}</p>
+              <button onClick={() => removeProductFromBasket(item.id)}>Remove</button>
+            </div>
+          ))}
+          <p>Total duration: {totalDuration} minutes</p>
+          <p>Total items: {basket.length}</p>
+          <button onClick={handleBookAppointment} className="btn btn-primary">Book an Appointment</button>
+        </div>
+      </section>
+    </main>
   );
 }
 

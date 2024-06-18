@@ -1,38 +1,27 @@
 /*============ HEADER =============*/
 
-.header{
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+.header {
     display: flex;
     align-items: center;
+    height: 60px;
     justify-content: space-between;
     box-shadow: var(--box-shadow);
     position: sticky;
     top: 0;
-    left: 0;  right: 0;
     background-color: var(--main-color);   
     z-index: 1000;
+    font-size: 1.5rem;
 }
-@media screen and (max-width:992px){
-    .navbar{
-        width: 100%;
-        height: 100%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 100;
-        background: #00000084;
-    }
-}
-.header .logo{
+
+.header .logo {
     width: 80px;
     height: 40px;
     padding-left: 2rem;
 }
-.header .navbar #close-navbar  {
+.header .navbar #close-navbar {
     position: absolute;
     top: 1.5rem;
-   right: 2rem;
+    right: 2rem;
     font-size: 4rem;
     cursor: pointer;
     color: var(--black);
@@ -40,16 +29,16 @@
    
 }
 .header .navbar {
+    flex: 1 1 auto;
     display: flex;
     justify-content: center;
+    column-gap: 3%;
 }
-.header .navbar ul,li{
+.header .navbar ul,li {
     list-style-type: none;
 }
 
-.header .navbar a{
-    font-size: 2rem;
-    margin-left: 2rem;
+.header .navbar a {
     color: var(--black);
     text-decoration: capitalize;
 }
@@ -57,21 +46,12 @@
     padding-bottom: 0.5rem;
     color: var(--black);
 }
-#menu-btn{
-    font-size: 2.5rem;
-    cursor: pointer;
-    color: var(--black);
-    right: 2rem;
-    padding-right: 3.5rem;
-    display: none;
-  
-}
+
 .login {
     background-color: var(--main-color);  
     padding-right: 50px; 
 }
-.login .btn-login{
-    font-size: 2rem;
+.login .btn-login {
     border-radius: 15px;
     width: 70px;
     height: 30px;

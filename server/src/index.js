@@ -155,7 +155,8 @@ app.post('/api/login', async (req, res) => {
 });
 
 
-app.post('/appointmentDetails',async (req, res) =>{
+app.post('/api/v2/appointmentDetails',async (req, res) =>{
+  const basket = req.body.basket;
   const date = req.body.date;
   const time = req.body.time;
   const totalTtems = req.body.totalTtems;
@@ -168,6 +169,7 @@ app.post('/appointmentDetails',async (req, res) =>{
 
   try {
     const newAppointment = await Appointment.create({
+      basket: basket,
       date: date,
       time: time,
       totalTtems: totalTtems,

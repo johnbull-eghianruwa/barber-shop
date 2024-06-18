@@ -1,0 +1,104 @@
+.main {
+    width: 100vw;
+    max-height: calc(100vh - 60px);
+    overflow-y: scroll;
+}
+
+.hero {
+    width: 100%;
+    background-image: url("../assets/HeroImage01.jpg");
+
+  /* Set a specific height */
+  min-height: 700px; 
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+}
+.container {
+    width: 600px;
+    margin-left: 15%;
+    display: flex;
+    justify-content: center;
+}
+.sub-heading h1 {
+    font-size: x-large;
+    text-align: center;
+    line-height: 1.6;
+}
+.sub-heading p {
+    font-size: 1.5rem;
+    width: 500px;
+    text-align: center;
+    line-height: 1.7;
+}
+
+.sub-heading .btn-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.btn-container .btn-request {
+    width: 200px;
+    height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background: var(--primary-color);
+    border-radius: 10px;
+    font-size: 1.57rem;
+}
+
+
+.information {
+    width: 100%;
+    /* height: 600px; */
+    display: flex;
+    column-gap: 50px;
+    justify-content: center;
+    padding-top: 2rem;
+}
+.information .social .menu-list{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.menu-list .item{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 1.1rem;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 10px;
+    transition: 0.3s ease-in-out;
+    color: #27374d;
+}
+.menu-list .item:hover{
+ 
+   color: #dde6ed;
+   width: 115px;
+}
+.information .opening-time {
+    font-size: 1.4rem;
+    line-height: 1.5;
+}
+.hint-section {
+    text-align: center;
+    margin-top: 18px;
+    border-top: 1px solid;
+    padding-top: 9px;
+}
+footer {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    padding: 2rem;
+}

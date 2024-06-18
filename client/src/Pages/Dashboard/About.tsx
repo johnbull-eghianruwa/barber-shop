@@ -9,7 +9,6 @@ import BuildingImage from '../../assets/BuildingImage.jpg';
 import SlideImage1 from '../../assets/SlideImage1.jpg';
 import SlideImage2 from '../../assets/SlideImage2.jpg';
 
-import '../../index.css';
 import '../../Styles/About.css';
 
 interface SlideProps {
@@ -40,72 +39,74 @@ const About: React.FC = () => {
   const slideImages = [SlideImage1, SlideImage2];
 
   return (
-    <section className="about" id="about">
-      <h1 className="heading">About us</h1>
-      <div className="row">
-        <img src={AboutUsImage} alt="" className="image" />
-      </div>
-      <div className="content">
-        <h3 className="title">We are group of stylists</h3>
-        <p>Since 2017, Isaac Barbier has been one of the top addresses for professional barbers in Hamburg.</p>
-        <p>Get professional advice, shave and hairstyle from us. Convince yourself of our high-quality and responsible work.</p>
-        <p>We look forward to seeing you!</p>
-      </div>
-      <div className="icons-container">
-        <div className="icons">
-          <img src={Image1} alt="" />
-          <h3>professional tools</h3>
+    <main className='main'>
+      <section className="about" id="about">
+        <h1 className="heading">About us</h1>
+        <div className="row">
+          <img src={AboutUsImage} alt="" className="image" />
         </div>
-        <div className="icons">
-          <img src={Image2} alt="" />
-          <h3>quality tools</h3>
+        <div className="content">
+          <h3 className="title">We are group of stylists</h3>
+          <p>Since 2017, Isaac Barbier has been one of the top addresses for professional barbers in Hamburg.</p>
+          <p>Get professional advice, shave and hairstyle from us. Convince yourself of our high-quality and responsible work.</p>
+          <p>We look forward to seeing you!</p>
         </div>
-        <div className="icons">
-          <img src={Image3} alt="" />
-          <h3>hair washing</h3>
-        </div>
-      </div>
-      <main className="image-container">
-        <div className="details-pic">
-          <h2>Welcome to hair weaving studio ingo klimmet!</h2>
-          <hr />
-          <div className="card">
-            <img src={HairLose} alt="" />
-            <p>
-              Do you have problems with your hair? Do you suffer from hair loss? Or do you
-              just want a fuller mane? Then you've come to the right place. We at Hair Weaving Studio have been there for you in Hamburg for 30 years. Our team is at your side with many years of experience and at any time with advice and support. After an individual consultation, we will work together to find the best solution for you.
-            </p>
+        <div className="icons-container">
+          <div className="icons">
+            <img src={Image1} alt="" />
+            <h3>professional tools</h3>
           </div>
-          <div className="card">
+          <div className="icons">
+            <img src={Image2} alt="" />
+            <h3>quality tools</h3>
+          </div>
+          <div className="icons">
+            <img src={Image3} alt="" />
+            <h3>hair washing</h3>
+          </div>
+        </div>
+        <main className="image-container">
+          <div className="details-pic">
+            <h2>Welcome to hair weaving studio ingo klimmet!</h2>
             <hr />
-            <img src={SeminarImage} alt="" />
-            <p>
-              Thanks to seminars and training courses of our employees, you will always find the most fashionable trends and new developments. We always give our best, both professionally and personally. Whether hair extensions, hair thickening, wigs or second hair - we will certainly find the perfect solution for you among the various methods. After a visit to us, your new head of hair will look as if it has always belonged to you.
-            </p>
+            <div className="card">
+              <img src={HairLose} alt="" />
+              <p>
+                Do you have problems with your hair? Do you suffer from hair loss? Or do you
+                just want a fuller mane? Then you've come to the right place. We at Hair Weaving Studio have been there for you in Hamburg for 30 years. Our team is at your side with many years of experience and at any time with advice and support. After an individual consultation, we will work together to find the best solution for you.
+              </p>
+            </div>
+            <div className="card">
+              <hr />
+              <img src={SeminarImage} alt="" />
+              <p>
+                Thanks to seminars and training courses of our employees, you will always find the most fashionable trends and new developments. We always give our best, both professionally and personally. Whether hair extensions, hair thickening, wigs or second hair - we will certainly find the perfect solution for you among the various methods. After a visit to us, your new head of hair will look as if it has always belonged to you.
+              </p>
+            </div>
+            <div className="card">
+              <hr />
+              <img src={BuildingImage} alt="" />
+              <p>
+                We have the best equipment and high-quality controls, which is why the implementation results in sustainable and high-quality treatment results. Thanks to our cooperation with very professional partners, such as Hair-Dreams, we always work with only the best products available on the market. We are looking forward to your visit to the Hair Weaving Studio Ingo Klimmet in Hamburg!
+              </p>
+            </div>
           </div>
-          <div className="card">
-            <hr />
-            <img src={BuildingImage} alt="" />
-            <p>
-              We have the best equipment and high-quality controls, which is why the implementation results in sustainable and high-quality treatment results. Thanks to our cooperation with very professional partners, such as Hair-Dreams, we always work with only the best products available on the market. We are looking forward to your visit to the Hair Weaving Studio Ingo Klimmet in Hamburg!
-            </p>
-          </div>
+        </main>
+        <div className="gallery">
+          <Slide images={slideImages} />
         </div>
-      </main>
-      <div className="gallery">
-        <Slide images={slideImages} />
-      </div>
-      <div className='infos'>
-      <i className="fa-brands fa-facebook"></i>
-      </div>
-      <div className='infos'>
-      <i className="fa-brands fa-square-instagram"></i>
-      </div>
-      <div className='infos'>
-            <i className="fa-brands fa-whatsapp"></i>
-      </div>
-            <i className="fa-solid fa-phone"></i>
-    </section>
+        <div className='infos'>
+        <i className="fa-brands fa-facebook"></i>
+        </div>
+        <div className='infos'>
+        <i className="fa-brands fa-square-instagram"></i>
+        </div>
+        <div className='infos'>
+              <i className="fa-brands fa-whatsapp"></i>
+        </div>
+              <i className="fa-solid fa-phone"></i>
+      </section>
+    </main>
   );
 };
 

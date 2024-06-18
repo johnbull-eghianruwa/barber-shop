@@ -5,6 +5,8 @@ import { add, format } from 'date-fns';
 import { INTERVAL, STORE_CLOSING_TIME, STORE_OPENING_TIME } from '../../Constants/Config';
 import { type DateTime } from '../../utils/types.d';
 
+import '../../Styles/Calendar.css';
+
 interface DateType {
   justDate: Date | null;
   dateTime: Date | null;
@@ -43,26 +45,30 @@ const Calendar: React.FC = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col justify-center items-center">
-      {date.justDate ? (
-        <div className='flex gap-4'>
-          {times?.map((time, i) => (
-            <div key={`time-${i}`} className='rounded-sm bg-gray-100 p-2'>
-              <button type='button' onClick={() => handleTimeSelect(time)}>
-                {format(time, 'kk:mm')}
-              </button>
+    <main className='main'>
+      <section className='calendar-section'>
+        <div className="h-screen flex flex-col justify-center items-center">
+          {date.justDate ? (
+            <div className='flex gap-4'>
+              {times?.map((time, i) => (
+                <div key={`time-${i}`} className='rounded-sm bg-gray-100 p-2'>
+                  <button type='button' onClick={() => handleTimeSelect(time)}>
+                    {format(time, 'kk:mm')}
+                  </button>
+                </div>
+              ))}
             </div>
-          ))}
+          ) : (
+            <ReactCalendar
+              minDate={new Date()}
+              className='REACT-CALENDAR p-2'
+              view="month"
+              onClickDay={(selectedDate) => setDate((prev) => ({ ...prev, justDate: selectedDate }))}
+            />
+          )}
         </div>
-      ) : (
-        <ReactCalendar
-          minDate={new Date()}
-          className='REACT-CALENDAR p-2'
-          view="month"
-          onClickDay={(selectedDate) => setDate((prev) => ({ ...prev, justDate: selectedDate }))}
-        />
-      )}
-    </div>
+      </section>
+    </main>
   );
 }
 
