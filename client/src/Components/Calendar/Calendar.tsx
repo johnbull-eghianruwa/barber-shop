@@ -20,7 +20,9 @@ const Calendar: React.FC = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
-  const { basket, totalItems, totalDuration } = location.state;
+  
+  // Add fallback values if location.state is null
+  const { basket = [], totalItems = 0, totalDuration = 0 } = location.state || {};
 
   const getTimes = () => {
     if (!date.justDate) return;

@@ -2,7 +2,7 @@
     width: 100vw;
     max-height: calc(100vh - 60px);
     overflow-y: scroll;
-    background-color: rgb(219 237 217);
+    background-color: rgb(121, 116, 116)
     color: #000;
 }
 .image-page img {
@@ -24,6 +24,7 @@
     font-size: 1.5rem;
     line-height: 1.4;
     padding: 9px;
+    text-align: center;
 }
 
 .basket button {
